@@ -8,11 +8,16 @@ Add Channel
     <span>{{ channel["desc"] }}</span>
 </div>
 <div id="chat-box" class="chat-box">
+    {% for message in messages %}
+    <p class="full-msg"><span class="msg-content">{{ message["message"] }}</span><span class="msg-by"> by {{
+            message["user"] }}</span></p>
+    {% endfor %}
 </div>
 <div class="msg-box">
     <input type="text" id="user-name" readonly hidden>
+    <input type="text" id="channel-id" readonly hidden value="{{ channel['id'] }}">
     <textarea placeholder="message here!" class="msg-content-box" id="msg-content-box"></textarea>
-    <a href="#" class="send-btn" id="send-btn">Send!</a>
+    <a href="" class="send-btn" id="send-btn">Send!</a>
 </div>
 <script type=text/javascript src="{{url_for('static', filename='js/chat.js') }}"></script>
 {% endblock %}

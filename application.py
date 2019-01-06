@@ -8,7 +8,30 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
 chats = [
-
+    {
+        "messages": [
+            {
+                "user": "Bharat",
+                "message": "Hello Everyone",
+            },
+            {
+                "user": "Arjun",
+                "message": "Hello Bharat",
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "user": "Bharat",
+                "message": "Hello Everyone",
+            },
+            {
+                "user": "Arjun",
+                "message": "Hello Bharat",
+            }
+        ]
+    },
 ]
 
 channels = [
@@ -45,6 +68,9 @@ def add():
             "name": channelname,
             "desc": desc,
         })
+        chats.append({
+            "messages": []
+        })
         return redirect(url_for('index'))
     return render_template("add.html")
 
@@ -52,9 +78,15 @@ def add():
 @app.route("/chat/<int:channel_id>")
 def chat(channel_id):
     channel = channels[channel_id]
-    return render_template("chat.html", channel=channel)
+    messages = chats[channel_id]["messages"]
+    return render_template("chat.html", channel=channel, messages=messages)
 
 
 @socketio.on("send msg")
 def msg(data):
+    print(data["message"])
+    chats[int(data["id"])]["messages"].append({
+        "user": data["name"],
+        "message": data["message"]
+    })
     emit("update message", data, broadcast=True)

@@ -8,11 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById("send-btn").onclick = () => {
             var name = document.getElementById("user-name").value;
-            var msg = document.querySelector(".msg-content-box").value;
-
+            var message = document.querySelector(".msg-content-box").value;
+            var channel_id = document.getElementById("channel-id").value;
             socket.emit('send msg', {
                 "name": name,
-                "message": msg,
+                "message": message,
+                "id": channel_id,
             })
         }
     });

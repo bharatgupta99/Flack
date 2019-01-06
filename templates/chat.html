@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block title %}
+Add Channel
+{% endblock %}
+{% block body %}
+<div class="container-fluid chat-room-heading">
+    <h2>{{ channel["name"] }}</h2>
+    <span>{{ channel["desc"] }}</span>
+</div>
+<div id="chat-box" class="chat-box">
+</div>
+<div class="msg-box">
+    <input type="text" id="user-name" readonly hidden>
+    <textarea placeholder="message here!" class="msg-content-box" id="msg-content-box"></textarea>
+    <a href="#" class="send-btn" id="send-btn">Send!</a>
+</div>
+<script type=text/javascript src="{{url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

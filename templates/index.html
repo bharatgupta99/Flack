@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block title %}
+Flack!
+{% endblock %}
+{% block body %}
+<div class="container-fluid header">
+    <div class="brand">Flack!<span id="brand-intro">A chat room service made using Flask</span></div>
+    <div id="username">(Guest)</div>
+</div>
+<div class="container-fluid rooms">
+    <div class="channels">
+        <h1>Channels Online</h1>
+        <hr>
+        <ul class="channels-list">
+            {% for channel in channels %}
+            <li><a href="{{ url_for('chat', channel_id=channel.id) }}">{{ channel.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="add-channel">
+        <i class="fas fa-plus"></i>
+        <a href="{{ url_for('add') }}">Add Channel</a>
+    </div>
+</div>
+<script type=text/javascript src="{{url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}

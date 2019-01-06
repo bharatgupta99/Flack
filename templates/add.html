@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block title %}
+Add Channel
+{% endblock %}
+{% block body %}
+<div class="container-fluid add-heading">
+    <h1>Add a channel!</h1>
+
+</div>
+<div class="container add-form">
+    <form method="POST">
+        <div class="form-group">
+            <label>Your name</label>
+            <input type="text" name="username" class="form-control" id="name-box" readonly>
+        </div>
+        <div class="form-group">
+            <label>Channel's name</label>
+            <input type="text" name="channelname" class="form-control" placeholder="name the channel!" required>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" name="desc" rows="2" placeholder="A short description would be nice!"
+                required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script type=text/javascript src="{{url_for('static', filename='js/add.js') }}"></script>
+{% endblock %}
